@@ -8,6 +8,7 @@
 .weightInput {
   max-width: 70px;
   margin-left: 10px;
+  text-align: center;
 }
 .resultDiv {
   text-align: center;
@@ -22,4 +23,14 @@
 
 .center {
   text-align: center;
+}
+
+.nameText{
+  margin: 10px;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.weightText {
+  margin-right: 55px;
 }

@@ -72,20 +72,20 @@ export class WheelComponent implements OnInit, AfterViewInit {
     let ang = this.summedWeightsUpTo(index-1) * arc;
     this.segmentAngels.push(ang);
     this.wheelContext.beginPath();
-    this.wheelContext.fillStyle = segment.color;
+    this.wheelContext.fillStyle = segment.color+"ff";
     this.wheelContext.moveTo(this.rad,this.rad);
     this.wheelContext.arc(this.rad,this.rad,this.rad,ang,ang+this.getSegWeight(index)*arc);
     this.wheelContext.lineTo(this.rad,this.rad)
     this.wheelContext.fill();
 
     this.wheelContext.translate(this.rad,this.rad);
-    this.wheelContext.rotate(ang + arc/2)
+    this.wheelContext.rotate((ang+ang+this.getSegWeight(index)*arc)/2)
     this.wheelContext.textAlign = "right";
     this.wheelContext.fillStyle = "#fff";
 
-    let fontSize = ((segment.label.length/20 + this.weightedN / 40) * -40) + 70;
+    let fontSize = ((segment.label.length/20 + this.weightedN / 40 + (0.04/this.getSegWeight(index)) ) * -50) + 80;
     this.wheelContext.font = `bold ${fontSize}px sans-serif`;
-    this.wheelContext.fillText(segment.label, this.rad -10,10);
+    this.wheelContext.fillText(segment.label, this.rad - 30,10);
   
     this.wheelContext.restore();
   }

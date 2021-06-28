@@ -22,10 +22,10 @@
   </ion-button>
   <ion-list>
     <ion-item >
-      <ion-input readonly type="text" value="Name"></ion-input>
-      <ion-input readonly class="colorInput" position="fixed">Color</ion-input>
-      <ion-input readonly class="weightInput" position="fixed">Weight</ion-input>
-      <ion-input readonly class="weightInput" position="fixed"> </ion-input>
+      <ion-input readonly class="nameText" type="text" value="Name"></ion-input>
+      <ion-input readonly class="colorInput colorText">Color</ion-input>
+      <ion-input readonly class="weightInput weightText">Weight</ion-input>
+      <!-- <ion-input readonly class="weightInput"> </ion-input> -->
     </ion-item>
     <ion-item *ngFor="let s of segmentsInput; let i=index">
       <ion-input class="labelInput" type="text"   [style]="'background-color: ' + s.color +'30;'"[(ngModel)]="s.label"></ion-input>

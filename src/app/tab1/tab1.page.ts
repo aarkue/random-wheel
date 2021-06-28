@@ -8,9 +8,9 @@ import { WheelComponent } from '../wheel/wheel.component';
 })
 export class Tab1Page {
   public segmentsInput : { label: string, color: string, weight?: number}[]  = [
-    {color:"#ef281e", label:"Option 1", weight: 1},
-    {color:"#f6a229", label:"Option 2", weight: 2},
-    {color:"#E3DD2D", label:"Option 3", weight: 3}
+    {color:"#ef281e", label:"Option 1", weight: 10},
+    {color:"#f6a229", label:"Option 2", weight: 0.5},
+    {color:"#E3DD2D", label:"Option 3", weight: 1}
   ];
   public velocity : number = 0;
   private readonly niceColors = ["#ef281e","#f6a229","#E3DD2D","#00bc58","#0881cd"]
