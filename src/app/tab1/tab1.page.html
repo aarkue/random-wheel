@@ -1,43 +1,36 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Random Wheel
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Random Wheel</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <div class="resultDiv">
-    <h1 class="resultText">{{resultLabel ? 'Result: '+resultLabel : 'Spin me!'}}</h1>
+  <div  class="resultDiv">
+    <h1 #resultText class="resultText">{{result ? ''+result.label : 'Spin me!'}}</h1>
   </div>
-<app-wheel #wheel [segments]=segmentsInput [riggedResult]="riggedResult" (onResult)="showResult($event)"></app-wheel>
+<app-wheel #wheel [segments]=segmentsInput [riggedResult]="riggedResult"
+(onResult)="showResult($event)"
+>
+
+</app-wheel>
 <div class="center">
-  <ion-button class="applyButton" size="large" color="success" (click) = "startWheel()" [disabled]="velocity > 0"> Spin
+  <ion-button size="large" color="primary" (click) = "startWheel()" [disabled]="velocity > 0"> Spin
     <ion-icon name="play" slot="end"></ion-icon>
   </ion-button>
   <ion-list>
     <ion-item >
-      <ion-input readonly class="nameText" type="text" value="Name"></ion-input>
-      <ion-input readonly class="colorInput colorText">Color</ion-input>
-      <ion-input readonly class="weightInput weightText">Weight</ion-input>
+      <ion-input tabindex="-1" readonly class="nameText" type="text" value="Name"></ion-input>
+      <ion-input tabindex="-1" readonly class="colorInput colorText">Color</ion-input>
+      <ion-input tabindex="-1"    readonly class="weightInput weightText">Weight</ion-input>
       <!-- <ion-input readonly class="weightInput"> </ion-input> -->
     </ion-item>
-    <ion-item *ngFor="let s of segmentsInput; let i=index">
-      <ion-input class="labelInput" type="text"   [style]="'background-color: ' + s.color +'30;'"[(ngModel)]="s.label"></ion-input>
-      <ion-input class="colorInput" type="color" [(ngModel)]="s.color"></ion-input>
-      <ion-input class="weightInput" step="0.5" min="0.5" type="number" [(ngModel)]="s.weight"></ion-input>
-      <ion-button color="danger" fill="clear" size="small" (click)="segmentsInput.splice(i,1)" slot="end"><ion-icon name="trash" slot="icon-only"></ion-icon></ion-button>
+    <ion-item tabindex="0" *ngFor="let s of segmentsInput; let i=index">
+      <ion-input #labelInput class="labelInput" tabindex="1" (keydown)="onLabelInputKeyDown(i,$event);"   type="text"   [style]="'background-color: ' + s.color +'30;'"[(ngModel)]="s.label"></ion-input>
+      <ion-input class="colorInput" tabindex="0" type="color" [(ngModel)]="s.color"></ion-input>
+      <ion-input class="weightInput" tabindex="0" step="0.5" min="0.5" type="number" [(ngModel)]="s.weight"></ion-input>
+      <ion-button color="danger" tabindex="0" fill="clear" size="small" (click)="segmentsInput.splice(i,1)" slot="end"><ion-icon name="trash" slot="icon-only"></ion-icon></ion-button>
     </ion-item>
     <ion-item>
       <ion-button size="default" (click) = "segmentsInput.push({label: 'Option '+(segmentsInput.length+1),color: getNiceColor(), weight: 1})"> Add
         <ion-icon name="add" slot="end"></ion-icon>
       </ion-button>
-      <ion-button class="applyButton" size="large" color="success" expand="full" (click) = "initWheel()"> Apply
+      <ion-button class="applyButton" size="default" color="success" expand="full" (click) = "initWheel()"> Apply
         <ion-icon name="save" slot="end"></ion-icon>
       </ion-button>
       <ion-button slot="end" color="danger" size="default" (click) = "segmentsInput = []"> All

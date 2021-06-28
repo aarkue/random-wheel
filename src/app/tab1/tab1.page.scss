@@ -12,6 +12,20 @@
 }
 .resultDiv {
   text-align: center;
+  width: 70%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.resultText {
+  transition: 0.3s ease-in-out;
+}
+
+.resultText.newResult {
+  transform: scale(1.3) translate(0, -10%);
+}
+
+.resultText {
+  border-radius: 50px;
 }
 
 .labelInput{
@@ -34,3 +48,4 @@
 .weightText {
   margin-right: 55px;
 }
+
