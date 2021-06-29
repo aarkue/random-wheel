@@ -29,6 +29,7 @@ export class WheelComponent implements OnInit, AfterViewInit {
   public segmentsInput : { label: string, color: string, weight?: number}[]  = [
     {color:"#ef281e", label:"Option 1", weight: 1}
   ];
+  
   private segments : {label: string, color: string, weight?: number}[] = [];
 
   private segmentAngels = [];
@@ -59,13 +60,15 @@ export class WheelComponent implements OnInit, AfterViewInit {
   }
 
   public initWheel(){
-    this.segments = this.segmentsInput;
+    if(this.segmentsInput && this.segmentsInput.length > 0){
+    this.segments = [...this.segmentsInput];
     clearInterval(this.interval)
     this.result = null;
     this.velocity = 0;
     this.segmentAngels = [];
     this.weightedN = this.summedWeightsUpTo(this.segments.length-1);
     this.segments.forEach((val,index) => this.drawSegment(val,index));
+    }
   }
 
   protected drawSegment(segment : {label: string, color: string, weight?: number}, index : number){
