@@ -17,9 +17,11 @@ export class WheelComponent implements OnInit, AfterViewInit {
   private wheelContext: CanvasRenderingContext2D;
   private rad : number;
   protected ang : number = 0;
+  @Input('friction')
   private friction : number = 0.989;
   protected velocity : number = 0;
   private interval;
+  @Input('velocityEnd')
   private readonly VELOCITY_CUTOFF : number = 0.001;
   private currSector = undefined;
 
@@ -128,10 +130,15 @@ export class WheelComponent implements OnInit, AfterViewInit {
   }
   
   
-  public startWheel(){
+  public startWheel(velocity : number | undefined = undefined){
     clearInterval(this.interval)
     this.result = null;
-    this.velocity = (Math.random() * (0.55 - 0.35) + 0.55)
+    if(velocity !== undefined){
+      this.velocity = velocity;
+    }else{
+      this.velocity = (Math.random() * (0.55 - 0.35) + 0.55)
+    }
+    
 
     if(this.riggedResult >= 0){
       let simVel = this.velocity;
