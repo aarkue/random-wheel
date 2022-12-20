@@ -85,12 +85,15 @@ export class WheelComponent implements OnInit, AfterViewInit {
 
     this.wheelContext.translate(this.rad,this.rad);
     this.wheelContext.rotate((ang+ang+this.getSegWeight(index)*arc)/2)
-    this.wheelContext.textAlign = "right";
-    this.wheelContext.fillStyle = "#fff";
 
-    let fontSize = ((segment.label.length/20 + this.weightedN / 40 + (0.04/this.getSegWeight(index)) ) * -50) + 80;
-    this.wheelContext.font = `bold ${fontSize}px sans-serif`;
-    this.wheelContext.fillText(segment.label, this.rad - 30,10);
+    if(navigator.userAgent.toLowerCase().indexOf('firefox') < 0){
+      this.wheelContext.textAlign = "right";
+      this.wheelContext.fillStyle = "#fff";
+      
+      let fontSize = ((segment.label.length/20 + this.weightedN / 40 + (0.04/this.getSegWeight(index)) ) * -50) + 80;
+      this.wheelContext.font = `bold ${fontSize}px sans-serif`;
+      this.wheelContext.fillText(segment.label, this.rad - 30,10);
+    }
   
     this.wheelContext.restore();
   }
